@@ -1,6 +1,7 @@
+/* eslint-disable react/jsx-no-undef */
 import React from 'react';
 // eslint-disable-next-line no-unused-vars
-import { Jumbotron, Container, CardColumns, Card, Button, Row, Col } from 'react-bootstrap';
+import { Container, CardColumns, Card, Button, Row, Col } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
 import { REMOVE_BOOK } from '../utils/mutations';

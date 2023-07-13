@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-no-undef */
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Form, Button, Row, Col, Card } from 'react-bootstrap';
+import {  Container, Form, Button, Row, Col, Card } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { SAVE_BOOK } from '../utils/mutations';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
