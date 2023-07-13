@@ -1,11 +1,11 @@
 const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
-const routes = require('./routes');
+
 const { authMiddleware } = require('./utils/auth');
 const { ApolloServer } = require('apollo-server-express');
 const { typeDefs, resolvers } = require('./schemas');
-const db = require('./config/connection');
+
 
 
 const app = express();
@@ -27,7 +27,6 @@ server.applyMiddleware({ app });
 // add Apollo server and Express.js middleware to our application
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(routes);
 
 // Path: server/server.js
 // if we're in production, serve client/build as static assets
@@ -41,11 +40,13 @@ app.get('*', (req, res) => {
 }
 );
 
-// start the Apollo server
-server.listen(PORT, () => {
-  console.log(`API server running on port ${PORT}!`);
-  // log where we can go to test our GQL API
-  console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-}
-);
 
+// Path: server/server.js
+// add this after the Apollo server is instantiated
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`Now listening on port ${PORT}!`);
+    // log where we can go to test our GQL API
+    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+  });
+}
