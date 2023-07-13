@@ -5,6 +5,8 @@
 const { User, Book } = require('../models');
 // import the signToken() function from the utils folder
 const { signToken } = require('../utils/auth');
+// import the AuthenticationError class from the apollo-server-express package
+const { AuthenticationError } = require('apollo-server-express');
 
 // Path: server/schemas/resolvers.js
 // add the following to the end of the file
